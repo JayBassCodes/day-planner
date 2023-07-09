@@ -2,6 +2,24 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+
+  for (let hour = 9; hour <= 17; hour++) {
+    let timeBlockStatus = "";
+    // time block status to be determined
+    if (hour < currentHour) {
+        timeBlockStatus = "past";
+    } else if (hour === currentHour) {
+        timeBlockStatus = "present";
+    } else {
+        timeBlockStatus = "future";
+    }
+    // AM/PM code
+    const hourLabel = hour > 12 ? `${hour - 12}PM` : hour === 12 ? `${hour}PM` : `${hour}AM`;
+     // hour id
+     const id = `hour-${hour}`;
+     // Checks local storage for saved data
+     let description = getSavedTimeBlock(id);
+     
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
